@@ -39,9 +39,20 @@
             <li class="inline text-white px-4">
                 <a href="/shop">Shop</a>
             </li>
+            @auth
             <li class="inline text-white px-4">
-                <a href="/">Contact Us</a>
+                <a href="/dashboard">
+                    <x-button>
+                        {{__('Dashboard')}}
+                    </x-button>
+                </a>
             </li>
+            @endauth
+            @guest
+            <li class="inline text-white px-4">
+                <a href="/login">Log in</a>
+            </li>
+            @endguest
             <li class="inline-block text-white">
                 <a href="/cart" class="flex">
                     <span class="px-1 text-blue-800 font-semibold">Rs. {{Cart::total()}}</span>
