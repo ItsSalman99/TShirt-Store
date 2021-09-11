@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,15 @@ Route::post('/update-cart/{rowId}', [CartController::class,'updateCart'])->name(
 Route::get('/remove/{rowId}', [CartController::class,'delete'])->name('Cartremoved');
 Route::get('/destroy', [CartController::class, 'destroy'])->name('cartDestroy');
 
+//Route for admin only
+Route::middleware(['IsAdmin'])->name('admin.')->group(function ()
+{
+    Route::get('/products', [ProductController::class,'products'])->name('products');
+    Route::get('/create-products', [ProductController::class,'create'])->name('createproducts');
+    Route::post('/create-products', [ProductController::class,'store'])->name('storeproducts');
+
+});
+
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/products', [AdminController::class,'products'])->middleware('IsAdmin')->name('products');
-Route::get('/create-products', [AdminController::class,'create'])->middleware('IsAdmin')->name('createproducts');
-Route::post('/create-products', [AdminController::class,'store'])->middleware('IsAdmin')->name('storeproducts');
+
 require __DIR__.'/auth.php';
