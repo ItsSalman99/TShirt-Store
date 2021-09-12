@@ -15,7 +15,7 @@ class CartController extends Controller
     public function addtoCart($id,Request $request)
     {
         $product = Product::findOrFail($id);
-        $cart = Cart::add($product->id,$product->name,$request->qty,$product->amount,[ 'size' => $product->size, 'color' => $product->color]);
+        $cart = Cart::add($product->id,$product->name,$request->qty,$product->amount,[ 'img' => $product->img, 'size' => $product->size, 'color' => $product->color]);
         if ($cart == null) {
             return abort(404);
         }
