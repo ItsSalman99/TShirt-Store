@@ -30,7 +30,7 @@
         <div class="border rounded my-4 p-2">
                 <div class="flex gap-8 my-4 flex-col lg:flex-row justify-evenly">
                     <div class="flex-1 mx-2 bg-gray-100 rounded-full p-2">
-                        <img src="{{ asset('/assets/products/'.$item->name. '.png') }}" alt="">
+                        <img src="{{ asset('storage/products/'.$item->options->img) }}" alt="">
                     </div>
                     <div class="flex-1">
                         <div class="flex flex-col justify-around">
