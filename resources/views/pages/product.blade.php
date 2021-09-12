@@ -5,7 +5,7 @@
         <div class="w-4/5 mx-auto my-8 p-5">
             <div class="grid lg:grid-flow-col gap-12">
                 <div class="bg-gray-200 p-5 rounded-lg">
-                    <img src="{{ asset($product->img) }}" alt="" class="hover:opacity-75">
+                    <img src="{{ asset('/storage/products/'.$product->img) }}" alt="" class="hover:opacity-75">
                 </div>
                 <div>
                     <h1 class="text-4xl">{{$product->name}}</h1>

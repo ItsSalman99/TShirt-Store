@@ -7,7 +7,7 @@
 
     <div class="w-11/12 mx-auto mt-4">
         <x-button>
-            <a href="{{ route('createproducts') }}" class="flex justify-between">
+            <a href="{{ route('admin.createproducts') }}" class="flex justify-between">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                 </svg>
@@ -17,6 +17,13 @@
     </div>
 
     <div class="w-11/12 mx-auto bg-white my-8">
+        @if (session()->has('message'))
+            <div class="w-full bg-green-500 p-5 rounded my-8">
+                <span class="text-white">
+                    {{session()->get('message')}}
+                </span>
+            </div>
+        @endif
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -60,7 +67,7 @@
                     @foreach ($products as $item)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href=""><img src="{{ asset($item->img) }}" class="w-20 hover:opacity-75" alt=""></a>
+                            <a href=""><img src="{{ asset('/storage/products/'.$item->img) }}" class="w-20 hover:opacity-75" alt=""></a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="text-sm text-gray-900">{{$item->name}}</span>
@@ -90,10 +97,10 @@
                             <span class="text-xs text-gray-900">{{date("F j, Y, g:i a",strtotime($item->created_at))}}</span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="" class="px-2 bg-gray-800 text-white rounded">Update</a>
+                            <a href="{{ route('admin.showproduct',$item->id) }}" class="px-2 bg-gray-800 text-white rounded">Update</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="" class="px-2 bg-gray-800 text-white rounded">Delete</a>
+                            <a href="{{ route('admin.destroyproduct',$item->id) }}" class="px-2 bg-gray-800 text-white rounded">Delete</a>
                         </td>
                     </tr>
                     @endforeach

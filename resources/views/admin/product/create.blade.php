@@ -18,10 +18,17 @@
                 </ul>
             </div>
         @endif
+        @if (session()->has('message'))
+            <div class="w-full bg-green-500 p-5 rounded my-8">
+                <span class="text-white">
+                    {{session()->get('message')}}
+                </span>
+            </div>
+        @endif
         <h1 class="lg:text-4xl text-gray-500 my-4">Add a new product</h1>
         <hr>
         <div>
-            <form action="{{ route('storeproducts') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.storeproducts') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="grid lg:grid-flow-col grid-cols-2 gap-4 my-4">
                     <div>
