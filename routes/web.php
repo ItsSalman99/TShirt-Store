@@ -32,7 +32,10 @@ Route::middleware(['IsAdmin'])->name('admin.')->group(function ()
     Route::get('/products', [ProductController::class,'products'])->name('products');
     Route::get('/create-products', [ProductController::class,'create'])->name('createproducts');
     Route::post('/create-products', [ProductController::class,'store'])->name('storeproducts');
-
+    Route::get('/update-product/{id}', [ProductController::class,'show'])->name('showproduct');
+    Route::post('/updateproduct/{id}',[ProductController::class,'update'])->name('updateproduct');
+    Route::get('/destroy/{id}', [ProductController::class,'destroy'])->name('destroyproduct');
+    Route::post('/deleteproduct/{id}', [ProductController::class,'delete'])->name('deleteproduct');
 });
 
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth'])->name('dashboard');
